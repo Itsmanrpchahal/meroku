@@ -1,3 +1,4 @@
 export default {
-  LOGIN: 'Login',
+  FEEDSCREEN: 'Feed Screen',
+  FEEDDETIAL: 'Feed Detail',
 };

@@ -1,21 +1,34 @@
 // @ts-ignore
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import navigationStrings from './navigationStrings';
-import loginScreen from '../screens/loginScreen';
+import feedScreen from '../screens/feedScreen';
+import feedDetail from '../screens/feedScreen/feedDetail';
+import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
+import login from '../screens/login';
 
-const Stack = createNativeStackNavigator();
+const Stack = createSharedElementStackNavigator();
 
 const Routes = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName={navigationStrings.FEEDSCREEN}>
         <Stack.Screen
-          name={navigationStrings.LOGIN}
-          component={loginScreen}
+          name={navigationStrings.FEEDSCREEN}
+          component={feedScreen}
           options={{
-            headerShown: false,
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name={navigationStrings.FEEDDETIAL}
+          component={feedDetail}
+          options={{
+            headerShown: true,
+          }}
+          sharedElements={(route, otherRoute, showing) => {
+            const {item} = route?.params;
+            return [`item` + route?.params?.data?.url];
           }}
         />
       </Stack.Navigator>

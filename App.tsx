@@ -15,6 +15,10 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {QueryClientProvider, QueryClient} from 'react-query';
 import {ThemeProvider, useTheme} from 'styled-components/native';
 import {navigationTheme} from './src/theme/theme';
+import {store} from './src/store';
+
+const queryClient = new QueryClient();
+const persistor = persistStore(store);
 
 const App = () => {
   return (
@@ -31,9 +35,15 @@ const App = () => {
         networkActivityIndicatorVisible={true}
       />
 
-      <ThemeProvider theme={navigationTheme.light}>
-        <Routes scheme={navigationTheme.light} />
-      </ThemeProvider>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <QueryClientProvider client={queryClient}>
+            <ThemeProvider theme={navigationTheme.light}>
+              <Routes scheme={navigationTheme.light} />
+            </ThemeProvider>
+          </QueryClientProvider>
+        </PersistGate>
+      </Provider>
     </GestureHandlerRootView>
   );
 };

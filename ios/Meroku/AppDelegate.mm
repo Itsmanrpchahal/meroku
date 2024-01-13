@@ -1,5 +1,5 @@
 #import "AppDelegate.h"
-#import <TwitterKit/TWTRKit.h>
+//#import <TwitterKit/TWTRKit.h>
 #import <React/RCTBundleURLProvider.h>
 
 @implementation AppDelegate
@@ -30,12 +30,12 @@
 #endif
 }
 
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
-  BOOL handled = false;
-  if ([[url scheme] hasPrefix:@"twitter"] == YES) {
-    handled = [[Twitter sharedInstance] application:app openURL:url options:options];
-  }
-  return handled;
-}
+//- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
+//  BOOL handled = false;
+//  if ([[url scheme] hasPrefix:@"twitter"] == YES) {
+//    handled = [[Twitter sharedInstance] application:app openURL:url options:options];
+//  }
+//  return handled;
+//}
 
 @end
